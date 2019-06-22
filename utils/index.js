@@ -44,12 +44,12 @@ const isUrl = val => {
   '-i'
 ]*/
 
-const mergeArgs = arguments => {
-  return (arguments || []).join(' ')
+const mergeArgs = args => {
+  return (args || []).join(' ')
 }
 
 const mergeInputFiles = files => {
-  const inputs =files.map((file)=>("-i "+file.toString()))
+  const inputs = files.map(file => '-i ' + file.toString())
   return mergeArgs(inputs)
 }
 

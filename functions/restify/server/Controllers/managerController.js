@@ -1,11 +1,11 @@
-const { FmmpegController } = require('./ffmpegController')
+const { FfmpegController } = require('./ffmpegController')
 const StorageController = require('./storageController')
 import { NotFoundException } from '../Responses/Exceptions/NotFoundException'
 import { isUrl, absolutePath } from '../../../../utils'
 
 export class ManagerController {
   constructor() {
-    this.ffmpegController = new FmmpegController()
+    this.ffmpegController = new FfmpegController()
     this.storageController = new StorageController()
   }
 

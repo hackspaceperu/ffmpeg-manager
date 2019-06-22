@@ -1,6 +1,6 @@
 import { ffprobe, ffmpeg } from '../../../ffmpeg/merge'
 
-export class FmmpegController {
+export class FfmpegController {
   /**
    * Read file and return their information.
    * @param {string[]} paths list of filepaths to probe.
