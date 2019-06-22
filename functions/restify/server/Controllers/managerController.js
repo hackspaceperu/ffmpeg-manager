@@ -10,6 +10,11 @@ export class ManagerController {
     this.storageController = new StorageController()
   }
 
+  /**
+   *
+   * @param {object[]} files List of data files.
+   * @param {object} settings Settings.
+   */
   async createMosaic(files, settings) {
     if (!files || !settings) {
       throw new NotFoundException('Missing files or settings.')
