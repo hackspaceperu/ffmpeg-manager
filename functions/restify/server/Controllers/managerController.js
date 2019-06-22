@@ -35,7 +35,7 @@ export class ManagerController {
     ]
 
     try {
-      const results = this.ffmpegController.probeFiles(desPaths)
+      const results = await this.ffmpegController.probeFiles(desPaths)
       console.log(results)
     } catch (e) {
       console.log('error')
