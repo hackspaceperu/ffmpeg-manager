@@ -60,7 +60,11 @@ export function ffprobe(file) {
         return reject('FFprobe: no valid media stream found')
       } else {
         console.log('Valid file found. FFProbe finished')
-        return resolve(result)
+        let o = {
+          'start': parseInt(result.start_time),
+          'duration': parseInt(result.duration),
+        }
+        return resolve(o)
       }
     }
     const child = execFile('ffprobe', args, opts, cb).on('error', reject)
