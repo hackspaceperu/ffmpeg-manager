@@ -17,8 +17,13 @@
   },
   "homepage": "https://github.com/HackSpacePeru/ffmpeg-manager#readme",
   "dependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
     "dotenv": "^8.0.0",
     "restify": "^8.3.3",
+    "restify-cors-middleware": "^1.1.1",
     "restify-router": "^0.5.1"
   }
 }
