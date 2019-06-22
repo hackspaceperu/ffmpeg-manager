@@ -9,6 +9,20 @@ const absolutePath = file => {
   return path.normalize(path.join(__dirname, file))
 }
 
+/*const transformTime = time => {
+  const timeString=time.toString().split(".")
+  let result=timeString[1]?timeString[1]:""
+  //segundos
+  let tiempo=Math.floor(time)
+  const seconds=tiempo%60
+  result=":"+(seconds<10?("0"+seconds):seconds)+result
+  //tiempo=tiempo/
+  //minutos  
+  const seconds=time%60
+  result=":"+(seconds<10?("0"+seconds):seconds)+result
+  return path.normalize(path.join(__dirname, file))
+}*/
+
 /*const createPath = file => {
   const dir = './tmp'
   if (!fs.existsSync(dir)) {
