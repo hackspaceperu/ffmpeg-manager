@@ -30,7 +30,7 @@ export class FfmpegController {
     return await ffmpeg(listFiles, 'webm', args)
   }
 
-  async cutFile(file, extension,beginning,end) {
+  async cutFile(file, extension, beginning, end) {
     /*if (listFiles.length !== 4) {
       throw new NotFoundException('No hay 4 videos.')
     }*/
@@ -38,11 +38,7 @@ export class FfmpegController {
     //ffmpeg -i movie.mp4 -vf trim=3:8 cut.mp4
 
     //ffmpeg -i input.wmv -ss 60 -t 60 -acodec copy -vcodec copy output.wmv
-    let args = [
-      '-vf',
-      'trim=',
-      beginning.toString()+":"+end.toString()
-    ]
+    let args = ['-vf', `trim=${beginning.toString() + ':' + end.toString()}`]
 
     return await ffmpeg([file], extension, args)
   }

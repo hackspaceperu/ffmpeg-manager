@@ -35,16 +35,22 @@ export class ManagerController {
     // )
 
     const desPaths = [
-      './test/min2i.webm',
-      './test/dos.mp4',
-      './test/min2i.webm',
-      './test/min2i.webm'
+      './test/cuatro.mp4',
+      './test/cinco.mp4',
+      './test/seis.mp4',
+      './test/seis.mp4'
     ]
 
     try {
       const results = await this.ffmpegController.probeFiles(desPaths)
       const ruta = await this.ffmpegController.mergeFiles(desPaths, fps)
-      return ruta
+      const rutaCortada = await this.ffmpegController.cutFile(
+        ruta,
+        'webm',
+        0,
+        5
+      )
+      return rutaCortada
     } catch (e) {
       console.log('error')
       throw new NotFoundException(e.message)
