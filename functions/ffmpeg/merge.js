@@ -4,31 +4,31 @@ import { spawn, execFile } from 'child_process'
 
 export function ffmpeg(file, ext, ffmpegArgs) {
   return new Promise((resolve, reject) => {
-    const optDirectory = outputDirectory(file, ext)
-    if (path.basename(optDirectory) !== path.basename(file)) {
-      const args = [
-        '-y',
-        '-loglevel',
-        'warning',
-        mergeInputFiles(file),
-        ...(ffmpegArgs || []),
-        optDirectory
-      ]
+    console.log('aslkfdlakfdsjl')
+    const optDirectory = outputDirectory('lololo', ext)
+    console.log('vivivi')
+    console.log(optDirectory)
+    const args = [
+      '-y',
+      '-loglevel',
+      'warning',
+      mergeInputFiles(file),
+      ...(ffmpegArgs || []),
+      optDirectory
+    ]
 
-      console.log('Running: ffmpeg', mergeArgs(args))
+    console.log(args.join(' '))
+    console.log('Running: ffmpeg', mergeArgs(args))
 
-      const opts = {}
+    const opts = { shell: true }
 
-      const child = spawn('ffmpeg', args, opts)
-        .on('message', msg => console.log(msg))
-        .on('error', reject)
-        .on('close', () => resolve(optDirectory))
+    const child = spawn('ffmpeg', args, opts)
+      .on('message', msg => console.log(msg))
+      .on('error', reject)
+      .on('close', () => resolve(optDirectory))
 
-      child.stdout.on('data', data => process.stdout.write(data))
-      child.stderr.on('data', data => process.stdout.write(data))
-    } else {
-      console.log('error')
-    }
+    child.stdout.on('data', data => process.stdout.write(data))
+    child.stderr.on('data', data => process.stdout.write(data))
   })
 }
 

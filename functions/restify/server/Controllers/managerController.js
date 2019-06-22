@@ -36,7 +36,8 @@ export class ManagerController {
 
     try {
       const results = await this.ffmpegController.probeFiles(desPaths)
-      console.log(results)
+      const ruta = await this.ffmpegController.mergeFiles(desPaths)
+      console.log(results, ruta)
     } catch (e) {
       console.log('error')
       throw new NotFoundException(e.message)
