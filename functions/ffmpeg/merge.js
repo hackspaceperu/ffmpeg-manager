@@ -1,5 +1,5 @@
 import { path } from 'path'
-import { outputDirectory, mergeArgs } from '../../utils'
+import { outputDirectory, mergeArgs, mergeInputFiles } from '../../utils'
 import { spawn, execFile } from 'child_process'
 
 export function ffmpeg(file, ext, ffmpegArgs) {
@@ -10,8 +10,7 @@ export function ffmpeg(file, ext, ffmpegArgs) {
         '-y',
         '-loglevel',
         'warning',
-        '-i',
-        file,
+        mergeInputFiles(file),
         ...(ffmpegArgs || []),
         optDirectory
       ]
