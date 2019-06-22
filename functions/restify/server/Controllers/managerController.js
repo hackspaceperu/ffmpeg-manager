@@ -1,7 +1,7 @@
 const { FfmpegController } = require('./ffmpegController')
 const { StorageController } = require('./storageController')
 import { NotFoundException } from '../Responses/Exceptions/NotFoundException'
-import { isUrl, absolutePath } from '../../../../utils'
+import { isUrl, absolutePath, minMinute } from '../../../../utils'
 import { Success } from '../Responses/Messages/Success'
 
 export class ManagerController {
@@ -35,21 +35,23 @@ export class ManagerController {
     // )
 
     const desPaths = [
-      './test/cuatro.mp4',
-      './test/cinco.mp4',
-      './test/seis.mp4',
-      './test/seis.mp4'
+      './test/videos/w_cinco.mp4',
+      './test/videos/w_uno.mp4',
+      './test/videos/w_dos.mp4',
+      './test/videos/w_tres.mp4'
     ]
 
     try {
       const results = await this.ffmpegController.probeFiles(desPaths)
+      console.log('Probe results ', results)
+
+      // Video with the lower minute
+      const endTime = minMinute(results.map(i => i.duration))
       const ruta = await this.ffmpegController.mergeFiles(desPaths, fps)
-      const rutaCortada = await this.ffmpegController.cutFile(
-        ruta,
-        'webm',
-        0,
-        5
-      )
+      const rutaCortada = await this.ffmpegController.cutFile(ruta, 'webm', {
+        startTime: 0,
+        endTime
+      })
       return rutaCortada
     } catch (e) {
       console.log('error')
