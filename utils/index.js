@@ -10,22 +10,22 @@ const absolutePath = file => {
 }
 
 const transformTime = time => {
-  const timeString=time.toString().split(".")
-  let result=timeString[1]?timeString[1]:""
+  const timeString = time.toString().split('.')
+  let result = timeString[1] ? timeString[1] : ''
   //segundos
-  let tiempo=Math.floor(time)
-  const seconds=tiempo%60
-  result=":"+(seconds<10?("0"+seconds):seconds)+result
-  
+  let tiempo = Math.floor(time)
+  const seconds = tiempo % 60
+  result = ':' + (seconds < 10 ? '0' + seconds : seconds) + result
+
   //minutos
-  tiempo=tiempo-seconds
-  const minutos=Math.floor(tiempo/60)%60
-  result=":"+(minutos<10?("0"+minutos):minutos)+result
+  tiempo = tiempo - seconds
+  const minutos = Math.floor(tiempo / 60) % 60
+  result = ':' + (minutos < 10 ? '0' + minutos : minutos) + result
 
   //horas
-  tiempo=tiempo-minutos*60
-  const horas=Math.floor(tiempo/3600)
-  result=":"+(hotas<10?("0"+horas):horas)+result
+  tiempo = tiempo - minutos * 60
+  const horas = Math.floor(tiempo / 3600)
+  result = ':' + (hotas < 10 ? '0' + horas : horas) + result
 
   return result
 }
@@ -85,6 +85,10 @@ const outputDirectory = (file, extension) => {
   )}.${extension}`
 }
 
+const minMinute = minutes => {
+  return Math.min(...minutes)
+}
+
 /*console.log(mergeArgs(args))
 console.log('gg pes', mergeArgs())
 console.log('hashing', hashingName())
@@ -95,6 +99,7 @@ console.log('val', isUrl('https://github.com/Rogger794?tab=repositories'))
 
 export {
   absolutePath,
+  minMinute,
   //createPath,
   hashingName,
   isUrl,

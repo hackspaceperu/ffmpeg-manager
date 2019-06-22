@@ -30,7 +30,7 @@ export class FfmpegController {
     return await ffmpeg(listFiles, 'webm', args)
   }
 
-  async cutFile(file, extension,times) {
+  async cutFile(file, extension, times) {
     /*if (listFiles.length !== 4) {
       throw new NotFoundException('No hay 4 videos.')
     }*/
@@ -41,7 +41,7 @@ export class FfmpegController {
     let args = [
       //'-vf',
       //'trim=',
-      `-threads 4 -ss ${times.startTime} -to ${times.endTime} -async 1`//,
+      `-threads 4 -ss ${times.startTime} -to ${times.endTime} -async 1` //,
       //beginning.toString()+":"+end.toString()
     ]
 
