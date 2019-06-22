@@ -44,8 +44,8 @@ const isUrl = val => {
   '-i'
 ]*/
 
-const mergeArgs = arguments => {
-  return (arguments || []).join(' ')
+const mergeArgs = args => {
+  return (args || []).join(' ')
 }
 
 const outputDirectory = (file, extension) => {

@@ -1,6 +1,7 @@
 const FmmpegController = require('./ffmpegController')
 const StorageController = require('./storageController')
 import { NotFoundException } from '../Responses/Exceptions/NotFoundException'
+import { isUrl } from '../../../../utils'
 
 export class ManagerController {
   constructor() {
@@ -17,7 +18,11 @@ export class ManagerController {
         filePath =>
           new Promise((resolve, reject) => {
             // Llamar a download
-            resolve('Holo')
+            if (isUrl(filePath)) {
+              resolve('Es url')
+            } else {
+              resolve('Noes url')
+            }
           })
       )
     )
