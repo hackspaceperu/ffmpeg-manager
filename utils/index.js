@@ -44,8 +44,13 @@ const isUrl = val => {
   '-i'
 ]*/
 
-const mergeArgs = args => {
-  return (args || []).join(' ')
+const mergeArgs = arguments => {
+  return (arguments || []).join(' ')
+}
+
+const mergeInputFiles = files => {
+  const inputs =files.map((file)=>("-i "+file.toString()))
+  return mergeArgs(inputs)
 }
 
 const outputDirectory = (file, extension) => {
@@ -73,6 +78,7 @@ export {
   hashingName,
   isUrl,
   mergeArgs,
+  mergeInputFiles,
   outputDirectory
 }
 
