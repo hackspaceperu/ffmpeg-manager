@@ -30,7 +30,7 @@ export class FfmpegController {
     return await ffmpeg(listFiles, 'webm', args)
   }
 
-  async cutFile(file, extension,beginning,end) {
+  async cutFile(file, extension,times) {
     /*if (listFiles.length !== 4) {
       throw new NotFoundException('No hay 4 videos.')
     }*/
@@ -39,9 +39,10 @@ export class FfmpegController {
 
     //ffmpeg -i input.wmv -ss 60 -t 60 -acodec copy -vcodec copy output.wmv
     let args = [
-      '-vf',
-      'trim=',
-      beginning.toString()+":"+end.toString()
+      //'-vf',
+      //'trim=',
+      `-threads 4 -ss ${times.startTime} -to ${times.endTime} -async 1`//,
+      //beginning.toString()+":"+end.toString()
     ]
 
     return await ffmpeg([file], extension, args)
