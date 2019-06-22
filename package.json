@@ -1,0 +1,24 @@
+{
+  "name": "ffmpeg-manager",
+  "version": "1.0.0",
+  "description": "module to control ffmpeg ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HackSpacePeru/ffmpeg-manager.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HackSpacePeru/ffmpeg-manager/issues"
+  },
+  "homepage": "https://github.com/HackSpacePeru/ffmpeg-manager#readme",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "restify": "^8.3.3",
+    "restify-router": "^0.5.1"
+  }
+}
