@@ -29,7 +29,7 @@ export class FfmpegController {
 
     let args = [
       '-filter_complex',
-      'scale=120:-1,tile=4x1',
+      `-filter_complex hstack=inputs=${listFiles.length}`,
       `-r ${fps}`
     ]
 
