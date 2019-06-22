@@ -1,18 +1,21 @@
-const path = require('path')
+import path from 'path'
+import fs from 'fs'
+import os from 'os'
+/*const path = require('path')
 const fs = require('fs')
-const os = require('os')
+const os = require('os')*/
 
 const absolutePath = file => {
   return path.normalize(path.join(__dirname, file))
 }
 
-const createPath = file => {
+/*const createPath = file => {
   const dir = './tmp'
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir)
   }
   return path.normalize(path.join('/', hashingName, file))
-}
+}*/
 
 const hashingName = () =>
   `ffmpeg-output-${Math.random()
@@ -31,7 +34,7 @@ const isUrl = val => {
   return !!val.match(regex)
 }
 
-const args = [
+/*const args = [
   '-v',
   'quiet',
   '-print_format',
@@ -39,35 +42,38 @@ const args = [
   '-show_format',
   '-show_streams',
   '-i'
-]
+]*/
 
 const mergeArgs = arguments => {
   return (arguments || []).join(' ')
 }
 
 const outputDirectory = (file, extension) => {
-  const outputDirectory = path.join(os.tmpdir(), hashingName())
-  if (!fs.existsSync(outputDirectory)) {
-    fs.mkdirSync(outputDirectory)
+  const output = path.join(os.tmpdir(), hashingName())
+  if (!fs.existsSync(output)) {
+    fs.mkdirSync(output)
   }
   return `${path.join(
-    outputDirectory,
+    output,
     path.basename(file, path.extname(file))
   )}.${extension}`
 }
 
-console.log(mergeArgs(args))
+/*console.log(mergeArgs(args))
 console.log('gg pes', mergeArgs())
 console.log('hashing', hashingName())
 console.log('path', absolutePath('./../gg'))
 console.log('output', outputDirectory('gg', 'abs'))
 console.log('val', isUrl('https://github.com/Rogger794?tab=repositories'))
-/*
+*/
+
 export {
   absolutePath,
-  createPath,
+  //createPath,
   hashingName,
-  mergeArgs
-}*/
+  isUrl,
+  mergeArgs,
+  outputDirectory
+}
 
 //ver si un string es url o no

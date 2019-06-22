@@ -1,11 +1,15 @@
-const Create = (res, message, data = '') => {
-  res.status(201)
-  res.json({
-    data: data,
-    error_code: null,
-    message,
-    success: true
-  })
+//A new resource was successfully created.
+const Create = (data = '') => {
+  return {
+    statusCode: 201,
+    // headers,
+    body: JSON.stringify({
+      data: data,
+      error_code: null,
+      message: 'Un nuevo recurso fue creado satisfactoriamente',
+      success: true
+    })
+  }
 }
 
 export { Create }
