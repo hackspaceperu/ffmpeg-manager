@@ -36,10 +36,10 @@ Name | Type | Description
 
 Name | Route | Type Request | Params | Description
 ---- |---- | ----- | ----- | ------
-`Merge` | `/MovieMarker/merge` |`POST` |  | Merge videos .
-`Trim` | `/MovieMarker/trim` |`POST` |  | Cut video into parts.
-`Clip` | `/MovieMarker/clip` |`POST` |  | Add video parts into output.
-`Concat` | `/MovieMarker/concat` |`POST` |  | Join videos.
+`Merge` | `/movie-maker/merge` |`POST` |  | Merge videos .
+`Trim` | `/movie-maker/trim` |`POST` |  | Cut video into parts.
+`Clip` | `/movie-maker/clip` |`POST` |  | Add video parts into output.
+`Concat` | `/movie-maker/concat` |`POST` |  | Join videos.
 `Upload` | `/Video/upload` | `POST` | | Upload video into s3.
 
 ### Function Arguments
