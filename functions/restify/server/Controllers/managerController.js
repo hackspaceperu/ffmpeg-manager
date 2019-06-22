@@ -2,6 +2,7 @@ const FmmpegController = require('./ffmpegController')
 const StorageController = require('./storageController')
 import { NotFoundException } from '../Responses/Exceptions/NotFoundException'
 import { isUrl } from '../../../../utils'
+import { ffprobe, ffmpeg } from '../../../ffmpeg/merge'
 
 export class ManagerController {
   constructor() {
@@ -26,7 +27,16 @@ export class ManagerController {
           })
       )
     )
-    return desPaths
+
+    try {
+      const results = await Promise.all(
+        desPaths.map(destPath => ffprobe(desPaths))
+      )
+      console.log(results)
+    } catch (e) {
+      throw new NotFoundException(e.message)
+    }
+
     // // Descargar archivos con promise all
     // const destMergedFile = this.ffmpegController.mergeFile(files)
     // try {

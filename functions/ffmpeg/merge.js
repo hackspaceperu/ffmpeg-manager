@@ -1,56 +1,54 @@
-import {
-    path
-} from 'path'
-import {
-    outputDirectory,
-    mergeArgs
-} from 'utils'
+import { path } from 'path'
+import { outputDirectory, mergeArgs } from '../../utils'
+import { spawn, execFile } from 'child_process'
 
 export function ffmpeg(file, ext, ffmpegArgs) {
-    return new Promise((resolve, reject) => {
-        const optDirectory = outputDirectory(file, ext)
-        if (path.basename(optDirectory) !== path.basename(file)) {
-            const args = [
-                '-y',
-                '-loglevel',
-                'warning',
-                '-i',
-                file,
-                ...(ffmpegArgs || []),
-                optDirectory
-            ]
+  return new Promise((resolve, reject) => {
+    const optDirectory = outputDirectory(file, ext)
+    if (path.basename(optDirectory) !== path.basename(file)) {
+      const args = [
+        '-y',
+        '-loglevel',
+        'warning',
+        '-i',
+        file,
+        ...(ffmpegArgs || []),
+        optDirectory
+      ]
 
-            console.log('Running: ffmpeg', mergeArgs(args))
+      console.log('Running: ffmpeg', mergeArgs(args))
 
-            const opts = {}
+      const opts = {}
 
-            const child = spawn('ffmpeg', args, opts)
-                .on('message', msg => console.log(msg))
-                .on('error', reject)
-                .on('close', () => resolve(optDirectory))
+      const child = spawn('ffmpeg', args, opts)
+        .on('message', msg => console.log(msg))
+        .on('error', reject)
+        .on('close', () => resolve(optDirectory))
 
-            child.stdout.on('data', data => process.stdout.write(data))
-            child.stderr.on('data', data => process.stdout.write(data))
-        } else {
-            console.log('error')
-        }
-    })
+      child.stdout.on('data', data => process.stdout.write(data))
+      child.stderr.on('data', data => process.stdout.write(data))
+    } else {
+      console.log('error')
+    }
+  })
 }
 
 export function ffprobe(file) {
-    return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
+    const args = [
+      '-v',
+      'quiet',
+      '-print_format',
+      'json',
+      '-show_format',
+      '-show_streams',
+      '-i',
+      file
+    ]
 
-        const args = [
-            '-v', 'quiet',
-            '-print_format', 'json',
-            '-show_format',
-            '-show_streams',
-            '-i', file
-        ]
+    const opts = {}
 
-        const opts = {}
-
-        /* const cb = (error, stdout) => {
+    /* const cb = (error, stdout) => {
         if (error) reject(error);
   
         const result = JSON.parse(stdout)
@@ -68,11 +66,11 @@ export function ffprobe(file) {
           return resolve(result)
         }
       } */
-        const child = spawn('ffprobe', args, opts, cb)
-            .on('message', msg => console.log(msg))
-            .on('error', reject)
+    const child = spawn('ffprobe', args, opts)
+      .on('message', msg => console.log(msg))
+      .on('error', reject)
 
-        child.stdout.on('data', data => resolve(process.stdout.write(data)))
-        child.stderr.on('data', data => reject(process.stdout.write(data)))
-    })
+    child.stdout.on('data', data => resolve(process.stdout.write(data)))
+    child.stderr.on('data', data => reject(process.stdout.write(data)))
+  })
 }
