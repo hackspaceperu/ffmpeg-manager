@@ -36,7 +36,7 @@ export class ManagerController {
 
     const desPaths = [
       './test/min2i.webm',
-      './test/min2i.webm',
+      './test/dos.mp4',
       './test/min2i.webm',
       './test/min2i.webm'
     ]
