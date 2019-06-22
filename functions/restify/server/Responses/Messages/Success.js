@@ -1,14 +1,14 @@
-const Success = (headers, data) => {
-  return {
+const Success = (res, data) => {
+  res.status(200)
+  res.json({
     statusCode: 200,
-    // headers,
-    body: JSON.stringify({
+    body: {
       data,
       error_code: null,
       message: 'OK',
       success: true
-    })
-  }
+    }
+  })
 }
 
 export { Success }
