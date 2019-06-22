@@ -1,5 +1,6 @@
 const FmmpegController = require('./ffmpegController')
 const StorageController = require('./storageController')
+import { NotFoundException } from '../Responses/Exceptions/NotFoundException'
 
 export class ManagerController {
   constructor() {
@@ -8,24 +9,24 @@ export class ManagerController {
   }
 
   async createMosaic(files, settings) {
-    console.log('holo')
-    //   console.log(`Filess`, files, settings)
-    //   const desPaths = await new Promise.all(
-    //     filePaths.map(
-    //       filePath =>
-    //         new Promise((resolve, reject) => {
-    //           resolve('Holo')
-    //         })
-    //     )
-    //   )
-
-    //   // Descargar archivos con promise all
-    //   const destMergedFile = this.ffmpegController.mergeFile(files)
-
-    //   try {
-    //   } catch (e) {
-    //     // llamar a excepcion filter
-    //   }
+    if (!files || !settings) {
+      throw new NotFoundException('Missing files or settings.')
+    }
+    const desPaths = await Promise.all(
+      files.map(
+        filePath =>
+          new Promise((resolve, reject) => {
+            // Llamar a download
+            resolve('Holo')
+          })
+      )
+    )
+    return desPaths
+    // // Descargar archivos con promise all
+    // const destMergedFile = this.ffmpegController.mergeFile(files)
+    // try {
+    // } catch (e) {
+    //   // llamar a excepcion filter
     // }
   }
 }

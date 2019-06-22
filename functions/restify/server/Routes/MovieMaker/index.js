@@ -3,6 +3,7 @@ import { Success } from '../../Responses/Messages/Success'
 import { NotFoundException } from '../../Responses/Exceptions/NotFoundException'
 import { NotFound } from '../../Responses/Messages/NotFound'
 import { BadRequest } from '../../Responses/Messages/BadRequest'
+import { SyntaxServerError } from '../../Responses/Messages/SyntaxServer'
 
 // declaring variables for server
 const RR = require('restify-router')
@@ -11,8 +12,10 @@ const managerController = new ManagerController()
 
 // routes
 router.post('/merge', async (req, res) => {
-  console.log(req.body)
-  const { files, settings } = req.body || {}
+  if (!req.body) {
+    return BadRequest(res, 'Undefined request body.')
+  }
+  const { files, settings } = req.body
 
   // send paths to controller
   try {
