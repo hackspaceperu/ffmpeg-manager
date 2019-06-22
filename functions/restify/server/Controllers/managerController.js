@@ -7,9 +7,8 @@ module.exports = class ManagerController {
     this.storageController = new StorageController()
   }
 
-  createMosaic(params) {
-    const { filePaths, duration } = params
-
+  createMosaic(files, settings) {
+    
     const desPaths = await new Promise.all(
       filePaths.map(
         filePath =>
