@@ -1,10 +1,17 @@
 import {
+    NotFoundException
+} from '../../functions/restify/server/Responses/Exceptions/NotFoundException'
+import {
     path
 } from 'path'
 import {
     outputDirectory,
     mergeArgs
 } from 'utils'
+import {
+    BadRequest,
+    InternalServerError
+} from '../../functions/restify/server/Responses/Messages'
 
 export function ffmpeg(file, ext, ffmpegArgs) {
     return new Promise((resolve, reject) => {
@@ -32,8 +39,9 @@ export function ffmpeg(file, ext, ffmpegArgs) {
             child.stdout.on('data', data => process.stdout.write(data))
             child.stderr.on('data', data => process.stdout.write(data))
         } else {
-            console.log('error')
+            throw new Error('Bad Request')
         }
+
     })
 }
 
