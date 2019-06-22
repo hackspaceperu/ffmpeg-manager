@@ -4,10 +4,7 @@ import { spawn, execFile } from 'child_process'
 
 export function ffmpeg(file, ext, ffmpegArgs) {
   return new Promise((resolve, reject) => {
-    console.log('aslkfdlakfdsjl')
     const optDirectory = outputDirectory('lololo', ext)
-    console.log('vivivi')
-    console.log(optDirectory)
     const args = [
       '-y',
       '-loglevel',

@@ -1,5 +1,5 @@
 const { FfmpegController } = require('./ffmpegController')
-const StorageController = require('./storageController')
+const { StorageController } = require('./storageController')
 import { NotFoundException } from '../Responses/Exceptions/NotFoundException'
 import { isUrl, absolutePath } from '../../../../utils'
 
