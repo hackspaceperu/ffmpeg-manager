@@ -1,4 +1,4 @@
-const ManagerController = require('../controllers/managerController')
+import ManagerController from '../controllers/managerController'
 
 // describe("ManagerControllerTest", () => {
 //   test("Should create mosaic", () => {});
