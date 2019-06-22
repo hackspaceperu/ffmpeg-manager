@@ -9,19 +9,26 @@ const absolutePath = file => {
   return path.normalize(path.join(__dirname, file))
 }
 
-/*const transformTime = time => {
+const transformTime = time => {
   const timeString=time.toString().split(".")
   let result=timeString[1]?timeString[1]:""
   //segundos
   let tiempo=Math.floor(time)
   const seconds=tiempo%60
   result=":"+(seconds<10?("0"+seconds):seconds)+result
-  //tiempo=tiempo/
-  //minutos  
-  const seconds=time%60
-  result=":"+(seconds<10?("0"+seconds):seconds)+result
-  return path.normalize(path.join(__dirname, file))
-}*/
+  
+  //minutos
+  tiempo=tiempo-seconds
+  const minutos=Math.floor(tiempo/60)%60
+  result=":"+(minutos<10?("0"+minutos):minutos)+result
+
+  //horas
+  tiempo=tiempo-minutos*60
+  const horas=Math.floor(tiempo/3600)
+  result=":"+(hotas<10?("0"+horas):horas)+result
+
+  return result
+}
 
 /*const createPath = file => {
   const dir = './tmp'
@@ -93,7 +100,8 @@ export {
   isUrl,
   mergeArgs,
   mergeInputFiles,
-  outputDirectory
+  outputDirectory,
+  transformTime
 }
 
 //ver si un string es url o no
