@@ -6,8 +6,8 @@ module.exports = class FmmpegController {
    */
   async probe(path) {
     // Call to service to probe
-    console.log(`Probing`);
-    return 0;
+    console.log(`Probing`)
+    return 0
   }
 
   /**
@@ -16,7 +16,7 @@ module.exports = class FmmpegController {
    * @returns {string} the filepath of the merged video.
    */
   async mergeFile(listFile) {
-    console.log(`Merging file`);
-    return 0;
+    console.log(`Merging file`)
+    return 0
   }
-};
+}
