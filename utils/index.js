@@ -1,6 +1,9 @@
-const path = require('path')
+import path from 'path'
+import fs from 'fs'
+import os from 'os'
+/*const path = require('path')
 const fs = require('fs')
-const os = require('os')
+const os = require('os')*/
 
 const absolutePath = file => {
   return path.normalize(path.join(__dirname, file))
