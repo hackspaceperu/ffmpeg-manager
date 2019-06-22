@@ -7,7 +7,7 @@ module.exports = class ManagerController {
     this.storageController = new StorageController()
   }
 
-  createMosaic(params) {
+  async createMosaic(params) {
     const { filePaths, duration } = params
 
     const desPaths = await new Promise.all(
@@ -18,7 +18,6 @@ module.exports = class ManagerController {
           })
       )
     )
-
 
     // Descargar archivos con promise all
     const destMergedFile = this.ffmpegController.mergeFile(files)
