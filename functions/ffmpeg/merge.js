@@ -61,8 +61,8 @@ export function ffprobe(file) {
       } else {
         console.log('Valid file found. FFProbe finished')
         let o = {
-          'start': parseInt(result.start_time),
-          'duration': parseInt(result.duration),
+          'start': parseInt(result.format.start_time),
+          'duration': parseInt(result.format.duration),
         }
         return resolve(o)
       }
