@@ -14,33 +14,22 @@ Or
 yarn install
 ```
 
-## Usage
-
-```jsx
-import React, { Component } from 'react'
-
-import SeatPicker from 'react-seat-picker'
-
-class Example extends Component {
-}
-```
-
-### Functions
+### Principal Functions
 
 Name | Type | Description
 ---- | ----- | -----------
 `ffmpeg` | function | Execute ffmpeg command line application to transform videos.
 `ffprobe` | function | Verify file in case is corrupted.
 
-### Functions2
+### Functions
 
 Name | Route | Type Request | Params | Description
 ---- |---- | ----- | ----- | ------
-`Merge` | `/movie-maker/merge` |`POST` |  | Merge videos .
-`Trim` | `/movie-maker/trim` |`POST` |  | Cut video into parts.
-`Clip` | `/movie-maker/clip` |`POST` |  | Add video parts into output.
-`Concat` | `/movie-maker/concat` |`POST` |  | Join videos.
-`Upload` | `/Video/upload` | `POST` | | Upload video into s3.
+`Merge` | `/movie-maker/merge` |`POST` | listFiles | Merge videos .
+`Trim` | `/movie-maker/trim` |`POST` | not yet | Cut video into parts.
+`Clip` | `/movie-maker/clip` |`POST` | not yet | Add video parts into output.
+`Concat` | `/movie-maker/concat` |`POST` | not yet | Join videos.
+`Upload` | `/Video/upload` | `POST` | not yet | Upload video into s3.
 
 ### Function Arguments
 
@@ -48,22 +37,22 @@ Name | Route | Type Request | Params | Description
 
 Names | Type | Description
 ---- | ----- | -----
-`no` |`string` | Merge videos .
+`listFiles` | `Array of string` | List of video paths .
 
 #### Trim
 
 Names | Type | Description
 ---- | ----- | -----
-`no` |`string` | Merge videos .
+`not yet` |`string` | Merge videos .
 
 #### Clip
 
 Names | Type | Description
 ---- | ----- | -----
-`no` |`string` | Merge videos .
+`not yet` |`string` | Merge videos .
 
 #### Concat
 
 Names | Type | Description
 ---- | ----- | -----
-`no` |`string` | Merge videos .
+`not yet` |`string` | Merge videos .
