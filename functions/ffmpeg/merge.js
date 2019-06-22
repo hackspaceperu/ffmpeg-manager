@@ -4,7 +4,7 @@ import { spawn, execFile } from 'child_process'
 
 export function ffmpeg(file, ext, ffmpegArgs) {
   return new Promise((resolve, reject) => {
-    const optDirectory = outputDirectory('lololo', ext)
+    const optDirectory = outputDirectory('mergedVideo', ext)
     const args = [
       '-y',
       '-loglevel',

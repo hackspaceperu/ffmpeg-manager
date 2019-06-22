@@ -1,4 +1,5 @@
 import { ffprobe, ffmpeg } from '../../../ffmpeg/merge'
+import { NotFoundException } from '../Responses/Exceptions/NotFoundException'
 
 export class FfmpegController {
   /**
@@ -16,10 +17,14 @@ export class FfmpegController {
    * @param {string[]} listFile list of file pahts the videos to merge.
    * @returns {string} the filepath of the merged video.
    */
-  async mergeFiles(listFiles) {
+  async mergeFiles(listFiles, fps) {
+    if (listFiles.length !== 4) {
+      throw new NotFoundException('No hay 4 videos.')
+    }
     let args = [
       '-filter_complex',
-      '"nullsrc=size=640x480 [base]; [0:v] setpts=PTS-STARTPTS, scale=320x240 [upperleft]; [1:v] setpts=PTS-STARTPTS, scale=320x240 [upperright]; [2:v] setpts=PTS-STARTPTS, scale=320x240 [lowerleft]; [3:v] setpts=PTS-STARTPTS, scale=320x240 [lowerright]; [base][upperleft] overlay=shortest=1 [tmp1]; [tmp1][upperright] overlay=shortest=1:x=320 [tmp2]; [tmp2][lowerleft] overlay=shortest=1:y=240 [tmp3]; [tmp3][lowerright] overlay=shortest=1:x=320:y=240"'
+      '"nullsrc=size=640x480 [base]; [0:v] setpts=PTS-STARTPTS, scale=320x240 [upperleft]; [1:v] setpts=PTS-STARTPTS, scale=320x240 [upperright]; [2:v] setpts=PTS-STARTPTS, scale=320x240 [lowerleft]; [3:v] setpts=PTS-STARTPTS, scale=320x240 [lowerright]; [base][upperleft] overlay=shortest=1 [tmp1]; [tmp1][upperright] overlay=shortest=1:x=320 [tmp2]; [tmp2][lowerleft] overlay=shortest=1:y=240 [tmp3]; [tmp3][lowerright] overlay=shortest=1:x=320:y=240"',
+      `-r ${fps}`
     ]
 
     return await ffmpeg(listFiles, 'webm', args)
