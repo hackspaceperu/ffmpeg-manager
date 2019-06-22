@@ -11,6 +11,7 @@ const router = new RR.Router()
 const managerController = new ManagerController()
 
 // routes
+// merge File
 router.post('/merge', async (req, res) => {
   if (!req.body) {
     return BadRequest(res, 'Undefined request body.')
@@ -31,6 +32,23 @@ router.post('/merge', async (req, res) => {
   }
 })
 
+// cut Video File
+router.post('/clip', async (req, res) => {
+  const { path, extension, times } = req.body
+
+  try {
+    // the result should be the new path of the merged video
+    const resultClip = await videoController.cutFile(path, extension, times)
+    return Success(res, resultMerge)
+  } catch (error) {
+    if (error instanceof NotFoundException) {
+      NotFound(res, error.message)
+    } else {
+      BadRequest(res, error.message)
+    }
+  }
+})
+
 router.post('/trim', async (req, res) => {
   const { path, cuts } = req.body
 
@@ -41,22 +59,6 @@ router.post('/trim', async (req, res) => {
     res.json({
       statusCode: 200,
       trimPath: resultTrim
-    })
-  } catch (error) {
-    return new ContentError(error.message)
-  }
-})
-
-router.post('/clip', async (req, res) => {
-  const { path, duration, position } = req.body
-
-  try {
-    // the result should be the new path of the merged video
-    const resultClip = await videoController.clip(path, duration, position)
-    res.status(200)
-    res.json({
-      statusCode: 200,
-      clipPath: resultClip
     })
   } catch (error) {
     return new ContentError(error.message)
