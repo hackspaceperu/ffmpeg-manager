@@ -1,8 +1,7 @@
-const FmmpegController = require('./ffmpegController')
+const { FmmpegController } = require('./ffmpegController')
 const StorageController = require('./storageController')
 import { NotFoundException } from '../Responses/Exceptions/NotFoundException'
 import { isUrl, absolutePath } from '../../../../utils'
-import { ffprobe, ffmpeg } from '../../../ffmpeg/merge'
 
 export class ManagerController {
   constructor() {
@@ -28,23 +27,19 @@ export class ManagerController {
     //   )
     // )
 
-    const desPaths = ['./min2i.webm', 'alksajdfk']
+    const desPaths = [
+      './test/min2i.webm',
+      './test/min2i.webm',
+      './test/min2i.webm',
+      './test/min2i.webm'
+    ]
+
     try {
-      const results = await Promise.all(
-        desPaths.map(destPath => ffprobe(destPath))
-      )
-      console.log('finish')
+      const results = this.ffmpegController.probeFiles(desPaths)
       console.log(results)
     } catch (e) {
       console.log('error')
       throw new NotFoundException(e.message)
     }
-
-    // // Descargar archivos con promise all
-    // const destMergedFile = this.ffmpegController.mergeFile(files)
-    // try {
-    // } catch (e) {
-    //   // llamar a excepcion filter
-    // }
   }
 }
