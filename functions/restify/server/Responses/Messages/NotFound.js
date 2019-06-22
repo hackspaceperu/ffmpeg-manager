@@ -1,15 +1,15 @@
 //The requested resource was not found.
-const NotFound = (code = 0) => {
-  return {
-    statusCode: 200,
-    //   headers,
-    body: JSON.stringify({
+const NotFound = (res, message, code = 0) => {
+  res.status(404)
+  res.json({
+    statusCode: 400,
+    body: {
       data: null,
       error_code: code,
-      message: 'The requested resource was not found.',
+      message,
       success: false
-    })
-  }
+    }
+  })
 }
 
 export { NotFound }

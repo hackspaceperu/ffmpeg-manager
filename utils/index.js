@@ -48,6 +48,11 @@ const mergeArgs = arguments => {
   return (arguments || []).join(' ')
 }
 
+const mergeInputFiles = files => {
+  const inputs =files.map((file)=>("-i "+file.toString()))
+  return mergeArgs(inputs)
+}
+
 const outputDirectory = (file, extension) => {
   const output = path.join(os.tmpdir(), hashingName())
   if (!fs.existsSync(output)) {
@@ -73,6 +78,7 @@ export {
   hashingName,
   isUrl,
   mergeArgs,
+  mergeInputFiles,
   outputDirectory
 }
 

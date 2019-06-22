@@ -1,13 +1,14 @@
-module.exports = class FmmpegController {
+import { ffprobe, ffmpeg } from '../../../ffmpeg/merge'
+
+export class FmmpegController {
   /**
    * Read file and return their information.
-   * @param {string} path file path.
+   * @param {string[]} paths list of filepaths to probe.
    * @returns {object} the information of file.
    */
-  async probe(path) {
+  async probeFiles(paths) {
     // Call to service to probe
-    console.log(`Probing`);
-    return 0;
+    return await Promise.all(paths.map(path => ffprobe(path)))
   }
 
   /**
@@ -15,8 +16,8 @@ module.exports = class FmmpegController {
    * @param {string[]} listFile list of file pahts the videos to merge.
    * @returns {string} the filepath of the merged video.
    */
-  async mergeFile(listFile) {
-    console.log(`Merging file`);
-    return 0;
+  async mergeFiles(listFile) {
+    console.log(`Merging file`)
+    return 0
   }
-};
+}
