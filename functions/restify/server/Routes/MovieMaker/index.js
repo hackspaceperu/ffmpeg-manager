@@ -11,7 +11,8 @@ const managerController = new ManagerController()
 
 // routes
 router.post('/merge', async (req, res) => {
-  const { files, settings } = req.body
+  console.log(req.body)
+  const { files, settings } = req.body || {}
 
   // send paths to controller
   try {

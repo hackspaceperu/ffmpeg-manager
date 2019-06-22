@@ -21,7 +21,7 @@ server.use(restify.plugins.bodyParser())
 server.pre(cors.preflight)
 server.use(cors.actual)
 
-router.add('/', MovieMaker)
+router.add('/movie-maker', MovieMaker)
 router.applyRoutes(server)
 
 server.listen(process.env.APP_PORT, () => {
