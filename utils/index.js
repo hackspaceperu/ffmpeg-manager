@@ -9,6 +9,12 @@ const absolutePath = file => {
   return path.normalize(path.join(__dirname, file))
 }
 
+const forVstack = files => {
+  return files.map((file,index)=>{
+    return "["+index+":v]"
+  }).join()
+}
+
 const transformTime = time => {
   const timeString = time.toString().split('.')
   let result = timeString[1] ? timeString[1] : ''
@@ -101,6 +107,7 @@ export {
   absolutePath,
   minMinute,
   //createPath,
+  forVstack,
   hashingName,
   isUrl,
   mergeArgs,
