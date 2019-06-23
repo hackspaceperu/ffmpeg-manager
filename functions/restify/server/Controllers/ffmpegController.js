@@ -48,6 +48,13 @@ export class FfmpegController {
       `-r ${fps}`
     ]
     
+    //este es para horizontal
+    /*let args = [
+      '-filter_complex',
+      `"${forVstack(listFiles)}hstack=inputs=${listFiles.length}[v]"` +
+        '-map "[v]"',
+      `-r ${fps}`
+    ]*/
     // const args = [
     //   '-filter_complex',
     //   `hstack=inputs=4`,
