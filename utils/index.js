@@ -81,10 +81,12 @@ const mergeInputFiles = files => {
 }
 
 const outputDirectory = (file, extension) => {
-  const output = path.join(os.tmpdir(), hashingName())
-  if (!fs.existsSync(output)) {
+  const output = //path.join(
+    //os.tmpdir(), 
+    hashingName()//)
+  /*if (!fs.existsSync(output)) {
     fs.mkdirSync(output)
-  }
+  }*/
   return `${path.join(
     output,
     path.basename(file, path.extname(file))
