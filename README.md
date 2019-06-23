@@ -82,4 +82,4 @@ yarn install
 
 ### Result Video
 
-![Alt Text]("https://github.com/HackSpacePeru/ffmpeg-manager/blob/master/mergedVideo.gif")
+![]("https://github.com/HackSpacePeru/ffmpeg-manager/blob/master/mergedVideo.gif")
