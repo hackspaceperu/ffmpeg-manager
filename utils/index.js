@@ -88,6 +88,7 @@ const outputDirectory = (file, extension) => {
     fs.mkdirSync(output)
   }*/
   return `${path.join(
+    "./",
     output,
     path.basename(file, path.extname(file))
   )}.${extension}`
