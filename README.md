@@ -28,6 +28,18 @@ Or
 yarn install
 ```
 
+## Run Server
+
+```bash
+yarn dev
+```
+
+or
+
+```bash
+npm run dev
+```
+
 ### Principal Functions
 
 | Name      | Type     | Description                                                  |
