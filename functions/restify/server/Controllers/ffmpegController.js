@@ -18,25 +18,33 @@ export class FfmpegController {
    * @returns {string} the filepath of the merged video.
    */
   async mergeFiles(listFiles, fps) {
-    if (listFiles.length !== 4) {
+    if (listFiles.length !== 6) {
       throw new NotFoundException('No hay 4 videos.')
     }
 
-    const dists = [
-      ' [0:v] setpts=PTS-STARTPTS, scale=160x240 [upperleft];',
-      ' [1:v] setpts=PTS-STARTPTS, scale=160x240 [upperright];',
-      ' [2:v] setpts=PTS-STARTPTS, scale=160x240 [lowerleft];',
-      ' [3:v] setpts=PTS-STARTPTS, scale=160x240 [lowerright];',
-      ' [base][upperleft] overlay=shortest=1 [tmp1];',
-      ' [tmp1][upperright] overlay=shortest=1:x=320 [tmp2];',
-      ' [tmp2][lowerleft] overlay=shortest=1:y=240 [tmp3];',
-      ' [tmp3][lowerright] overlay=shortest=1:x=320:y=240'
-    ]
-    const args = [
+    let args = [
       '-filter_complex',
-      `"nullsrc=size=640x480 [base];${dists.join()}"`,
+      '"nullsrc=size=640x480 [base];' +
+        '[0:v] setpts=PTS-STARTPTS, scale=213x240 [upperleft];' +
+        '[1:v] setpts=PTS-STARTPTS, scale=213x240 [uppermiddle];' +
+        '[2:v] setpts=PTS-STARTPTS, scale=213x240 [upperleft];' +
+        '[3:v] setpts=PTS-STARTPTS, scale=213x240 [lowerleft];' +
+        '[4:v] setpts=PTS-STARTPTS, scale=213x240 [lowermiddle];' +
+        '[5:v] setpts=PTS-STARTPTS, scale=213x240 [lowerright];' +
+        '[base][upperleft] overlay=shortest=1 [tmp1];' +
+        '[tmp1][uppermiddle] overlay=shortest=1:x=213 [tmp2];' +
+        '[tmp2][upperleft] overlay=shortest=1:x=426 [tmp3];' +
+        '[tmp3][lowerleft] overlay=shortest=1:y=240 [tmp4];' +
+        '[tmp4][lowermiddle] overlay=shortest=1:y=240:x=213 [tmp5];' +
+        '[tmp5][lowerright] overlay=shortest=1:y=240:x=426"',
       `-r ${fps}`
     ]
+
+    // const args = [
+    //   '-filter_complex',
+    //   `hstack=inputs=4`,
+    //   `-r ${fps}`
+    // ]
 
     // let args = [
     //   '-filter_complex',

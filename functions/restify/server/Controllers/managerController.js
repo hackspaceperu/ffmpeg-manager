@@ -41,9 +41,11 @@ export class ManagerController {
 
     const desPaths = [
       './test/videos/w_dos.mp4',
-      './test/videos/w_dos.mp4',
-      './test/videos/w_dos.mp4',
-      './test/videos/w_tres.mp4'
+      './test/videos/w_tres.mp4',
+      './test/videos/w_cuatro.mp4',
+      './test/videos/w_uno.mp4',
+      './test/videos/w_seis.mp4',
+      './test/videos/w_rogger.mp4'
     ]
 
     try {
