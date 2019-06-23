@@ -3,3 +3,4 @@ node_modules/
 **/*.webm
 **/*.mp3
 **/*.mp4
+dist
