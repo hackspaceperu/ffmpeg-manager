@@ -2,7 +2,7 @@ import { path } from 'path'
 import { outputDirectory, mergeArgs, mergeInputFiles } from '../../utils'
 import { spawn, execFile } from 'child_process'
 
-export function ffmpeg(file, ext="webm", ffmpegArgs) {
+export function ffmpeg(file, ext = 'webm', ffmpegArgs) {
   return new Promise((resolve, reject) => {
     const optDirectory = outputDirectory('mergedVideo', ext)
     const args = [
@@ -61,8 +61,8 @@ export function ffprobe(file) {
       } else {
         console.log('Valid file found. FFProbe finished')
         let o = {
-          'start': parseInt(result.format.start_time),
-          'duration': parseInt(result.format.duration),
+          start: parseInt(result.format.start_time),
+          duration: parseInt(result.format.duration)
         }
         return resolve(o)
       }
