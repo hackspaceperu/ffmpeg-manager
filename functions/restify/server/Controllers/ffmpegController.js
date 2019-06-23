@@ -1,5 +1,6 @@
 import { ffprobe, ffmpeg } from '../../../ffmpeg/merge'
 import { NotFoundException } from '../Responses/Exceptions/NotFoundException'
+import { forVstack } from '../../../../utils'
 
 export class FfmpegController {
   /**
