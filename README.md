@@ -79,3 +79,7 @@ yarn install
     <img src="https://github.com/HackSpacePeru/ffmpeg-manager/blob/master/ffmpeg_manager-sequence_diagram.png" alt="FFMPEG Manager Sequence Diagram" width="400"/>
     </a>
 </div>
+
+### Result Video
+
+![Alt Text]("https://github.com/HackSpacePeru/ffmpeg-manager/blob/master/mergedVideo.gif")
