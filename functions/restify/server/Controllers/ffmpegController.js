@@ -1,5 +1,6 @@
 import { ffprobe, ffmpeg } from '../../../ffmpeg/merge'
 import { NotFoundException } from '../Responses/Exceptions/NotFoundException'
+import {forVstack} from '../../../../utils'
 
 export class FfmpegController {
   /**
@@ -22,7 +23,7 @@ export class FfmpegController {
       throw new NotFoundException('No hay 4 videos.')
     }
 
-    let args = [
+/*    let args = [
       '-filter_complex',
       '"nullsrc=size=640x480 [base];' +
         '[0:v] setpts=PTS-STARTPTS, scale=213x240 [upperleft];' +
@@ -38,8 +39,15 @@ export class FfmpegController {
         '[tmp4][lowermiddle] overlay=shortest=1:y=240:x=213 [tmp5];' +
         '[tmp5][lowerright] overlay=shortest=1:y=240:x=426"',
       `-r ${fps}`
-    ]
+    ]*/
 
+    let args = [
+      '-filter_complex',
+      `"${forVstack(listFiles)}vstack=inputs=${listFiles.length}[v]"` +
+        '-map "[v]"',
+      `-r ${fps}`
+    ]
+    
     // const args = [
     //   '-filter_complex',
     //   `hstack=inputs=4`,
